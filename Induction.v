@@ -214,7 +214,7 @@ Proof.
 Theorem plus_comm : forall n m : nat,
   n + m = m + n.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  (* FILL IN HERE *)
 
 Theorem plus_assoc : forall n m p : nat,
   n + (m + p) = (n + m) + p.
