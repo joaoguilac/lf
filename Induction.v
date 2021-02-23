@@ -204,22 +204,47 @@ Proof.
 Theorem mult_0_r : forall n:nat,
   n * 0 = 0.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros n. induction n as [| n' IHn'].
+  - (* n = 0 *)
+    simpl. reflexivity.
+  - (* n = S n' *)
+    simpl. rewrite -> IHn'. reflexivity.
+Qed.
 
 Theorem plus_n_Sm : forall n m : nat,
   S (n + m) = n + (S m).
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros n m. induction n as [| n' IHn'].
+  - (* n = 0 *)
+    destruct m as [| m'].
+    + simpl. reflexivity.
+    + simpl. reflexivity.
+  - (* n = S n' *)
+    simpl. rewrite -> IHn'. reflexivity.
+Qed.
 
 Theorem plus_comm : forall n m : nat,
   n + m = m + n.
 Proof.
-  (* FILL IN HERE *)
+  induction n as [| n' IHn'].
+  - (* n = 0 *)
+    induction m as [| m' IHm'].
+    + simpl. reflexivity.
+    + simpl. rewrite <- IHm'. simpl. reflexivity.
+  - (* n = S n' *)
+    induction m as [| m' IHm'].
+    + simpl. rewrite -> IHn'. simpl. reflexivity.
+    + simpl. rewrite -> IHn'. rewrite <- IHm'. 
+      simpl. rewrite -> IHn'. reflexivity.
+Qed.
 
 Theorem plus_assoc : forall n m p : nat,
   n + (m + p) = (n + m) + p.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  induction n as [| n' IHn'].
+  - simpl. reflexivity.
+  - intros m p. simpl. rewrite -> IHn'. reflexivity.
+Qed. 
 (** [] *)
 
 (** **** Exercise: 2 stars, standard (double_plus) 
